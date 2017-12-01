@@ -26,9 +26,9 @@
     <h3>Comments</h3>
     <md-list *ngIf="dish">
       <md-list-item *ngFor="let comment of dish.comments">
-        <p mdLine>{{ comment.comment }}</p>
-        <p mdLine>{{ comment.rating }} Stars</p>
-        <p mdLine>{{ comment.author }} {{ comment.date | date }} </p>
+        <p md-line>{{ comment.comment }}</p>
+        <p md-line>{{ comment.rating }} Stars</p>
+        <p md-line>-- {{ comment.author }} {{ comment.date | date }} </p>
       </md-list-item>
     </md-list>
   </div>
