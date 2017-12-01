@@ -9,11 +9,11 @@
   <div fxFlex="40">
     <md-card *ngIf="dish">
         <md-card-title>
-          <h3>{{ dish.name | uppercase }}</h3>
+          <h3>{{dish.name | uppercase}}</h3>
         </md-card-title>
-        <img md-card-image src="{{ dish.image }}">
+        <img md-card-image src={{dish.image}} alt={{dish.name}}>
         <md-card-content>
-          <p>{{ dish.description }}</p>
+          <p>{{dish.description}}</p>
         </md-card-content>
         <md-card-actions>
           <button md-button>LIKE</button>
@@ -26,9 +26,9 @@
     <h3>Comments</h3>
     <md-list *ngIf="dish">
       <md-list-item *ngFor="let comment of dish.comments">
-        <p md-line>{{ comment.comment }}</p>
-        <p md-line>{{ comment.rating }} Stars</p>
-        <p md-line>-- {{ comment.author }} {{ comment.date | date }} </p>
+        <p md-line>{{comment.comment}}</p>
+        <p md-line>{{comment.rating}} Stars</p>
+        <p md-line>-- {{comment.author}} {{comment.date | date}} </p>
       </md-list-item>
     </md-list>
   </div>
