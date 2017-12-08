@@ -38,7 +38,7 @@ import { LeaderService } from './services/leader.service';
     FlexLayoutModule,
     AppRoutingModule
   ],
-  providers: [ DishService, PromotionService ],
+  providers: [ DishService, PromotionService, LeaderService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
