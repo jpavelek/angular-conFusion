@@ -7,15 +7,15 @@ export class DishService {
 
   constructor() { }
 
-  getDishes(): Dish[] {
-    return DISHES;
+  getDishes(): Promise<Dish[]> {
+    return Promise.resolve(DISHES); //Works now for local data, rewrite forcommunications later
   };
 
-  getDish(id: number): Dish {
-    return DISHES.filter((dish) => (dish.id === id))[0]; // Arrow notation of function declaration
+  getDish(id: number): Promise<Dish> {
+    return Promise.resolve(DISHES.filter((dish) => (dish.id === id))[0]); // Arrow notation of function declaration
   };
 
-  getFeaturedDish(): Dish {
-    return DISHES.filter((dish) => (dish.featured))[0];  // Arrow notation for boolean function
+  getFeaturedDish(): Promise<Dish> {
+    return Promise.resolve(DISHES.filter((dish) => (dish.featured))[0]);  // Arrow notation for boolean function
   };
 }
