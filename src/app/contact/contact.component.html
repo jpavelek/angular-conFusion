@@ -34,5 +34,45 @@
         <h4>Map of our Location</h4>
       </div>
     </div>
+  </div>  
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Send us your feedback</h3>
+    <p>
+      {{feedbackForm.value |json}} {{ feedbackForm.status | json }}
+    </p>
+    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+      <p>
+        <md-input-container class="half-width">
+          <input mdInput formControlName="firstname" type="text" placeholder="First Name" required>
+        </md-input-container>
+        <md-input-container class="half-width">
+          <input mdInput formControlName="lastname" type="text" placeholder="Last Name" required>
+        </md-input-container>
+        <md-input-container class="half-width">
+          <input mdInput formControlName="telnum" type="tel" placeholder="Tel. Number">
+        </md-input-container>
+        <md-input-container class="half-width">
+          <input mdInput formControlName="email" type="email" placeholder="Email">
+        </md-input-container>
+      </p>
+      <table class="form-size">
+        <td>
+          <md-slide-toggle formControlName="agree">May we contact you</md-slide-toggle>
+        </td>
+        <td>
+          <md-select placeholder="How?" formControlName="contacttype">
+            <md-option *ngFor="let ctype of contactType" [value]="ctype">
+              {{ctype}}
+            </md-option>
+          </md-select>
+        </td>
+      </table>
+      <p>
+        <md-input-container class="full-width">
+          <textarea mdInput formControlName="message" placeholder="Your feedback" rows="12"></textarea>
+        </md-input-container>
+      </p>
+      <button type="submit" md-button class="background-primary text-floral-white">Submit</button>
+    </form>
   </div>
 </div>
