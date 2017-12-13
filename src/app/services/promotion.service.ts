@@ -7,16 +7,16 @@ export class PromotionService {
 
   constructor() { }
 
-  getPromotions(): Promotion[] {
-    return PROMOTIONS;
+  getPromotions(): Promise<Promotion[]> {
+    return Promise.resolve(PROMOTIONS);
   };
 
-  getPromotion(id: number): Promotion {
-    return PROMOTIONS.filter((promo) => (promo.id === id))[0]; // Arrow notation of function declaration
+  getPromotion(id: number): Promise<Promotion> {
+    return Promise.resolve(PROMOTIONS.filter((promo) => (promo.id === id))[0]); // Arrow notation of function declaration
   };
 
-  getFeaturedPromotion(): Promotion {
-    return PROMOTIONS.filter((promo) => (promo.featured))[0];  // Arrow notation for boolean function
+  getFeaturedPromotion(): Promise<Promotion> {
+    return Promise.resolve(PROMOTIONS.filter((promo) => (promo.featured))[0]);  // Arrow notation for boolean function
   };
 
 }
