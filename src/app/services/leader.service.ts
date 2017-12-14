@@ -12,16 +12,16 @@ export class LeaderService {
 
   constructor() { }
 
-  getLeaders(): Promise<Leader[]> {
-    return Observable.of(LEADERS).delay(2000).toPromise();
+  getLeaders(): Observable<Leader[]> {
+    return Observable.of(LEADERS).delay(2000);
   }
 
-  getLeader(id: number): Promise<Leader> {
-    return Observable.of(LEADERS.filter((lead) => (lead.id === id))[0]).delay(2000).toPromise();
+  getLeader(id: number): Observable<Leader> {
+    return Observable.of(LEADERS.filter((lead) => (lead.id === id))[0]).delay(2000);
   }
 
-  getFeaturedLeader(): Promise<Leader> {
-    return Observable.of(LEADERS.filter((lead) => (lead.featured))[0]).delay(2000).toPromise();
+  getFeaturedLeader(): Observable<Leader> {
+    return Observable.of(LEADERS.filter((lead) => (lead.featured))[0]).delay(2000);
   }
 
 }
