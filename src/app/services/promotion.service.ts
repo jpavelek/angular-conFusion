@@ -8,15 +8,21 @@ export class PromotionService {
   constructor() { }
 
   getPromotions(): Promise<Promotion[]> {
-    return Promise.resolve(PROMOTIONS);
+    return new Promise(resolve => {
+      setTimeout(() => resolve(PROMOTIONS), 2000);
+    });
   };
 
   getPromotion(id: number): Promise<Promotion> {
-    return Promise.resolve(PROMOTIONS.filter((promo) => (promo.id === id))[0]); // Arrow notation of function declaration
+    return new Promise(resolve => {
+      setTimeout(() => resolve(PROMOTIONS.filter((promo) => (promo.id === id))[0]), 2000);
+    });
   };
 
   getFeaturedPromotion(): Promise<Promotion> {
-    return Promise.resolve(PROMOTIONS.filter((promo) => (promo.featured))[0]);  // Arrow notation for boolean function
+    return new Promise(resolve => {
+      setTimeout(() => resolve(PROMOTIONS.filter((promo) => (promo.featured))[0]), 2000);
+    });
   };
 
 }

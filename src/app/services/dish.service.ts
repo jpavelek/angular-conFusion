@@ -8,14 +8,23 @@ export class DishService {
   constructor() { }
 
   getDishes(): Promise<Dish[]> {
-    return Promise.resolve(DISHES); //Works now for local data, rewrite forcommunications later
-  };
+    return new Promise(resolve => {
+      //Simulate 2s delay of server latency
+      setTimeout(() => resolve(DISHES), 2000);
+    }); 
+  }
 
   getDish(id: number): Promise<Dish> {
-    return Promise.resolve(DISHES.filter((dish) => (dish.id === id))[0]); // Arrow notation of function declaration
-  };
+    return new Promise(resolve => {
+      //Simulate 2s delay of server latency
+      setTimeout(() => resolve(DISHES.filter((dish) => (dish.id === id))[0]), 2000);
+    });
+  }
 
   getFeaturedDish(): Promise<Dish> {
-    return Promise.resolve(DISHES.filter((dish) => (dish.featured))[0]);  // Arrow notation for boolean function
+    return new Promise(resolve => {
+      //Simulate 2s delay of server latency
+      setTimeout(() => resolve(DISHES.filter((dish) => (dish.featured))[0]), 2000);
+    });
   };
 }
