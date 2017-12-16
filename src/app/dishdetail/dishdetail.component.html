@@ -47,14 +47,16 @@
 
     
     <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+
+      <md-list *ngIf="!commentForm.invalid">
+        <md-list-item>
+            <p md-line>{{commentForm.value.comment}}</p>
+            <p md-line>{{commentForm.value.rating}} Stars</p>
+            <p md-line>-- {{commentForm.value.author}} </p>
+        </md-list-item>
+      </md-list>
+
       <div class="container" fxLayout="column">
-        <md-list *ngIf="!commentForm.invalid">
-          <md-list-item>
-              <p md-line>{{commentForm.value.comment}}</p>
-              <p md-line>{{commentForm.value.rating}} Stars</p>
-              <p md-line>-- {{commentForm.value.author}} </p>
-          </md-list-item>
-        </md-list>
         <md-input-container dividerColor="{{formErrors.author ? 'warn' : 'primary'}}">
           <input mdInput formControlName="author" type="text" placeholder="Your name" required>
           <md-hint>
@@ -69,7 +71,9 @@
           </md-hint>
         </md-input-container>
       </div>
+
       <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+      
     </form> <!-- END of Comment form -->
   </div>
 
