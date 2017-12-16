@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
+import { Comment } from '../shared/comment';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -87,10 +88,16 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    let newComment:Comment = this.commentForm.value;  // They have same structure, no need to copy values by one
-    console.log(newComment);
-    //TODO - Show
-    //TODO - Add to array of comments
+    let newComment:Comment = this.commentForm.value;
+    let d = new Date();
+    let n = d.toISOString();
+
+    this.dish.comments.push({
+      author: newComment.author,
+      comment: newComment.comment,
+      rating: newComment.rating,
+      date: n
+    });
     this.commentForm.reset({
       author: "",
       comment: "",
