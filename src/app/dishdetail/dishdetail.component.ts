@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
@@ -19,10 +19,14 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
+  commentForm: FormGroup;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private fb: FormBuilder) {
+      this.createForm();
+  }
 
   ngOnInit() {
     this.dishservice.getDishIds()
@@ -42,4 +46,11 @@ export class DishdetailComponent implements OnInit {
     this.location.back();
   }
 
+  createForm() {
+    this.commentForm = this.fb.group({
+      author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      comment: ['', Validators.required],
+      rating: [0, Validators.required]
+    });
+  }
 }
