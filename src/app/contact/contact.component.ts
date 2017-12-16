@@ -23,12 +23,12 @@ export class ContactComponent implements OnInit {
     'firstname': {
       'required': "First name is required",
       'minlength': "First name must be at least 2 characters long",
-      'maxlenght': "Fist name cannot be more than 25 characters long"
+      'maxlength': "Fist name cannot be more than 25 characters long"
     },
     'lastname': {
       'required': "Last name is required",
       'minlength': "Last name must be at least 2 characters long",
-      'maxlenght': "Last name cannot be more than 25 characters long"
+      'maxlength': "Last name cannot be more than 25 characters long"
     },
     'telnum': {
       'required': "Telephone number is required",

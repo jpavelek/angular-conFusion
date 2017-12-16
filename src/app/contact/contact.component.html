@@ -43,7 +43,7 @@
           dividerColor="{{formErrors.firstname ? 'warn' : 'primary'}}">
           <input mdInput formControlName="firstname" type="text" placeholder="First Name">
           <md-hint>
-            <span [hidden]="!(formErrors.firstName)">{{formErrors.firstname}}</span>
+            <span [hidden]="!(formErrors.firstname)">{{formErrors.firstname}}</span>
           </md-hint>
         </md-input-container>
         <md-input-container class="half-width"
@@ -55,14 +55,14 @@
         </md-input-container>
         <md-input-container class="half-width"
           dividerColor="{{formErrors.telnum ? 'warn' : 'primary'}}">
-          <input mdInput formControlName="telnum" type="tel" placeholder="Tel. Number" patters="[0..9]*" required>
+          <input mdInput formControlName="telnum" type="tel" placeholder="Tel. Number" pattern="[0-9]*">
           <md-hint>
             <span [hidden]="!(formErrors.telnum)">{{formErrors.telnum}}</span>
           </md-hint>
         </md-input-container>
         <md-input-container class="half-width"
           dividerColor="{{formErrors.email ? 'warn' : 'primary'}}">
-          <input mdInput formControlName="email" type="email" placeholder="Email" required>
+          <input mdInput formControlName="email" type="email" placeholder="Email" email>
           <md-hint>
             <span [hidden]="!(formErrors.email)">{{formErrors.email}}</span>
           </md-hint>
