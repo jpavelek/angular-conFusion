@@ -17,6 +17,7 @@ import 'rxjs/add/operator/switchMap';
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
+  dishcopy = null;  //This will be Restangularized Dish copy
   dishIds: number[];
   prev: number;
   next: number;
@@ -52,7 +53,7 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); }, errmsg => this.errMsg = <any>errmsg)
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); }, errmsg => this.errMsg = <any>errmsg)
   }
 
   setPrevNext(dishId: number) {
@@ -92,15 +93,16 @@ export class DishdetailComponent implements OnInit {
 
   onSubmit() {
     let newComment:Comment = this.commentForm.value;
-    let d = new Date();
-    let n = d.toISOString();
+    let d = new Date().toISOString();
 
-    this.dish.comments.push({
+    this.dishcopy.comments.push({
       author: newComment.author,
       comment: newComment.comment,
       rating: newComment.rating,
-      date: n
+      date: d
     });
+    this.dishcopy.save()
+      .subscribe(dish => this.dish = dish); //Save (and update UI) only when saved on server
     this.commentForm.reset({
       author: "",
       comment: "",
