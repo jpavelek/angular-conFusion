@@ -4,6 +4,7 @@ import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut, expand } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
 import { Observable } from 'rxjs/Observable';
+import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-contact',
@@ -30,6 +31,7 @@ export class ContactComponent implements OnInit {
     'email': ''
   }
   feedback_handle: Feedback;
+  feedback_prev = false;
 
   validationMessages = {
     'firstname': {
@@ -96,7 +98,14 @@ export class ContactComponent implements OnInit {
     this.feedback = this.feedbackForm.value;  // They have same structure, no need to copy values by one
 
     this.feedback_handle = null;
-    this.feedbackservice.submitFeedback(this.feedback).subscribe(feedback => this.feedback_handle = feedback);
+    this.feedbackservice.submitFeedback(this.feedback)
+    .subscribe(feedback => { 
+      this.feedback_handle = feedback; 
+      this.feedback_prev = true;
+      var self = this;
+      setTimeout( function() {
+        self.feedback_prev = false;
+      }, 5000)});
 
     this.feedbackForm.reset({
       firstname: "",
