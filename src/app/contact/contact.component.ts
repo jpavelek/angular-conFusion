@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-contact',
@@ -27,6 +28,7 @@ export class ContactComponent implements OnInit {
     'telnum': '',
     'email': ''
   }
+  feedback_handle: Feedback;
 
   validationMessages = {
     'firstname': {
@@ -55,6 +57,7 @@ export class ContactComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.feedback_handle = new Feedback();
   }
 
   createForm() {
@@ -91,7 +94,8 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     this.feedback = this.feedbackForm.value;  // They have same structure, no need to copy values by one
 
-    this.feedbackservice.submitFeedback(this.feedback);
+    this.feedback_handle = null;
+    this.feedbackservice.submitFeedback(this.feedback).subscribe(feedback => this.feedback_handle = feedback);
 
     this.feedbackForm.reset({
       firstname: "",
