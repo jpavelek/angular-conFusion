@@ -37,7 +37,7 @@
   </div>  
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your feedback</h3>
-    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" *ngIf="feedback_handle">
+    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" *ngIf="feedback_handle" [@expand]>
       <p>
         <md-input-container class="half-width" 
           dividerColor="{{formErrors.firstname ? 'warn' : 'primary'}}">
@@ -87,7 +87,7 @@
       </p>
       <button type="submit" md-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
     </form>
-    <div [hidden]="feedback_handle">
+    <div [hidden]="feedback_handle" [@expand]>
       <h3>Submitting feedback</h3>
       <md-spinner></md-spinner>
     </div>
