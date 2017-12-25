@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 
 @Component({
   selector: 'app-contact',
@@ -48,7 +49,8 @@ export class ContactComponent implements OnInit {
     }
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+      private feedbackservice: FeedbackService) {
     this.createForm();
    }
 
@@ -88,7 +90,9 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;  // They have same structure, no need to copy values by one
-    console.log(this.feedback);
+
+    this.feedbackservice.submitFeedback(this.feedback);
+
     this.feedbackForm.reset({
       firstname: "",
       lastname: "",
