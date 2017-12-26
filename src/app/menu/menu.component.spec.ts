@@ -8,6 +8,8 @@ import { DishService } from '../services/dish.service';
 import { DISHES } from '../shared/dishes';
 import { baseURL } from '../shared/baseurl';
 import { Observable } from 'rxjs/Observable';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 import { MenuComponent } from './menu.component';
 
 describe('MenuComponent', () => {
@@ -55,5 +57,17 @@ describe('MenuComponent', () => {
     expect(component.dishes.length).toBe(4);
     expect(component.dishes[1].name).toBe('Zucchipakoda');
     expect(component.dishes[3].featured).toBeFalsy();
+  });
+
+  it('should use dishes in the template', () => {
+    fixture.detectChanges();
+
+    let de: DebugElement;
+    let el: HTMLElement;
+
+    de = fixture.debugElement.query(By.css('h1'));
+    el = de.nativeElement;
+
+    
   });
 });
