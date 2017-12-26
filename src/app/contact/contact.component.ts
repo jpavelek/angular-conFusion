@@ -4,7 +4,7 @@ import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut, expand } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
 import { Observable } from 'rxjs/Observable';
-import { setTimeout } from 'timers';
+import { setTimeout } from 'timers-browserify';
 
 @Component({
   selector: 'app-contact',
