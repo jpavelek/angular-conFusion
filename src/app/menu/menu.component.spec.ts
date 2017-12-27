@@ -68,6 +68,6 @@ describe('MenuComponent', () => {
     de = fixture.debugElement.query(By.css('h1'));
     el = de.nativeElement;
 
-    
+    expect(el.textContent).toContain(DISHES[0].name.toUpperCase());
   });
 });
